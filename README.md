@@ -1,7 +1,7 @@
 # ProPEER
 
 ## chungbuk university Department of Software   
-### openSW basic project   
+### openSW basic team project   
 ### ProPEER project MathCore
 -----
 
