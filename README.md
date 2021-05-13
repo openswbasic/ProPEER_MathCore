@@ -2,7 +2,7 @@
 
 ## chungbuk university Department of Software   
 ### openSW basic project   
-#### ProPEER project MathCore
+### ProPEER project MathCore
 -----
 
 2020069022 박형영 Park-HY-00
