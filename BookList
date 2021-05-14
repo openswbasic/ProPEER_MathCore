@@ -4,22 +4,58 @@
 // 2. InputBook (printDBBook)
 // 2-1. BookName, BookTime, BookAnswer
 
+import time//time 모듈 추가
+import openpyxl//excel 모듈 추가
+
 def InputBookData: //교재 정보 입력
-  
-
-
-def printDBBook: //교재 정보 출력
-  
-
+  BookList=[]
+  List=[]
+  global BookName
+  global BookTime
+  global BookAnswerName
+  global BookAnswer
+  BookName=Input("교재 이름을 입력하세요: ")
+  BookTime=time.strftime('%Y-%m-%d',time.locatetime(time.time()))
+  BookAnserName=Input("정답지의 이름을 입력하세요: ")
+  BookAnswer=openpyxl.workbook()
+  BookAnswer.save('BookAnswerName.xlsx')
+  List.append(BookName,BookTime,BookAnswer)
+  BookList.append(List)
 
 def delBookList: //교재 정보 삭제
-  if num==2: //삭제 버튼을 누르면
   delBookName=input("삭제하고 싶은 교재 이름을 입력하세요: ")
   for i in len(BookList)
     if delBookName==BookName: //기존에 있던 이름과 입력받은 이름이 같으면
       BookList=[i for i in BookList if not delBookName in i] //BookList에서 DelBookName이 들어간 배열 삭제
-
+    else:
+      print("삭제할 수 있는 교재가 없습니다!")
+      
 def printBookList: //교재 목록 출력
+  for i in len(BookList)
+    print(BookName)
+    print(BookTime)
+    print("====================")
 
-
-printDBBook()
+def printDBBook: //교재 정보 출력
+   ViewBook=input("정보를 보고 싶은 교재의 이름을 입력하세요: ")
+   for i in len(BookList) 
+      if ViewBook==BookName: 
+        print(BookName)
+        print(BookTime)
+        print(BookAnswerName)
+      else:
+        print("해당 교재는 존재하지 않습니다!")
+   
+while True:
+  printBookList()
+  print("1. 교재 정보 입력")
+  print("2. 교재 정보 삭제")
+  print("3. 교재 정보 출력(이름, 시간, 답지)")
+  num=input("기능을 선택해주세요: ")
+  
+  if num==1: //정보 입력 버튼을 누르면
+    InputBookData()
+  if num==2: //삭제 버튼을 누르면
+    delBookList()
+  if num==3: //정보 출력 버튼을 누르면 
+    printDBBook()
