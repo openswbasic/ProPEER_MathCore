@@ -64,6 +64,59 @@ def ModifyBookData(BookList): #교재 정보 수정
   if (ModBookName in BookList) == True:
     if num==1:
       print("새로운 교재의 이름을 입력하세요: ")
-      BookName=map
+      NewBookName=map(str,input().split())
+      NewBookTime=time.strftime('%Y-%m-%d', time.localtime(time.time()))
+      BookList[NewBookName]=[NewBookTime,BookAnswerName]
     
-   
+    if num==2:
+      print("새로운 답안지의 이름을 입력하세요: ")
+      NewBookAnswerName=map(str,input().split())
+      NewBookTime=time.strftime('%Y-%m-%d', time.localtime(time.time()))
+      BookList[BookName]=[NewBookTime,NewBookAnswerName]
+  else:
+    print("해당 교재가 존재하지 않습니다!")
+    print("다시 입력하시겠습니까? (y/n)")
+    Agree_NonAgree=input(":: ")
+    if Agree_NonAgree=="y":
+      ModifyBookData(BookList)
+    else:
+      main()
+  return BookList
+  
+def PrintMenu():
+  print()
+  print("1. 교재 정보 입력")
+  print("2. 교재 정보 삭제")
+  print("3. 교재 정보 출력")
+  print("4. 교재 정보 수정")
+  print("5. 종료")
+  print()
+ 
+def main():
+  BookList=dict()
+  
+  while True:
+    if not BookList:
+      PrintMenu()
+    else:
+      PrintBookList(BookList)
+      PrintMenu()
+      
+    select=input("번호를 입력해주세요: ")
+    print()
+    
+    if select==1:
+      BookList=InputBookData(BookList)
+    elif select==2:
+      BookList=DelBookData(BookList)
+    elif select==3:
+      BookList=PrintDBBook(BookList)
+    elif select==4:
+      BookList=ModifyBookData(BookList)
+    else:
+      print("프로그램을 종료합니다.")
+      break
+     
+     
+     
+main()
