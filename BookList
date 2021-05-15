@@ -1,10 +1,69 @@
 # /* BookList Management*/
 
-# // 1. BookList print & delete (printBookList, delBookList)
-# // 2. InputBook (printDBBook)
+# // 1. BookList print & delete
+# // 2. InputBook
 # // 2-1. BookName, BookTime, BookAnswer
 
 import time #time 모듈 추가
-import openpyxl #excel 모듈 추가
+#import openpyxl //excel 모듈 추가 -> openpyxl 따로 설치해야 함
 
-def InputBookData: #
+def InputBookData(BookList): #교재 정보 입력 (일단 딕셔너리로 관리)
+  BookName=input("교재 이름을 입력하세요: ")
+  if (BookName not in BookList) == True: #교재 이름이 없으면 교재 정보 입력
+    BookTime=time.strftime('%Y-%m-%d', time.localtime(time.time())) #교재 입력 시간 저장(년-월-일)
+    BookAnswerName=input("답안지의 이름을 입력하세요: ")
+    #BookAnswer= openpyxl.load_workbook(BookAnswerName'.xlsx')
+    
+  else: #이름이 있는 경우
+    print("이미 있는 교재 이름입니다!")
+    return InputBookData(BookList)
+    
+  BookList[BookName]=[BookTime,BookAnswerName]
+  return BookList
+
+def DelBookData(BookList): #교재 정보 삭제
+  delBookName=input("삭제하고 싶은 교재 이름을 입력하세요: ")
+  if (delBookName in BookList) == True:
+    BookList.pop(delBookName)
+  else:
+    print("존재하지 않는 교재의 이름입니다!")
+    print("다시 입력하시겠습니까? (y/n)")
+    Agree_NonAgree=input(":: ")
+    if Agree_NonAgree=="y":
+      DelBookData(BookList)
+    else:
+      main()
+
+def PrintDBBook(BookList): #교재 정보 단일 출력
+  searchBookName=input("정보를 보고 싶은 교재의 이름을 입력해주세요: ")
+  if (searchBookName in BookList) == True:
+    print()
+    print(searchBookName," 교재의 정보입니다.")
+    print(searchBookName,' : ',BookList.get(searchBookName),' ')
+    print()
+  else:
+    print("존재하지 않는 교재의 이름입니다!")
+    print("다시 검색하시겠습니다? (y/n)")
+    Agree_NonAgree=input(":: ")
+    
+    if Agree_NonAgree=="y":
+      PrintDBBook(BookList)
+    else:
+      main()
+
+def PrintBookList(BookList): #교재 이름 전체 출력 / 삭제나 검색할 때 참고
+  print("가나다 순")
+  print(sorted(BookList.keys()))
+  return BookList
+
+def ModifyBookData(BookList): #교재 정보 수정
+  ModBookName=input("수정하고 싶은 교재의 이름을 입력하세요: ")
+  print("1. 이름 수정")
+  print("2. 답안지 수정")
+  num=input(":: ")
+  if (ModBookName in BookList) == True:
+    if num==1:
+      print("새로운 교재의 이름을 입력하세요: ")
+      BookName=map
+    
+   
