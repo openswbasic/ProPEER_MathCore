@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static "admin/css/base.css" %}" />
+  <title>{% block title %}mathcore by proPEER{% endblock %}</title>
+</head>
+{# sidebar 내용 %}
+<body>
+  <div id="sidebar">
+    {% block sidebar %}
+    <ul>
+      <li><a href="/">mathcore_Home</a></li>
+      <li><a href="/admin/">Admin</a></li>
+      {# <li><a href="/login/">Login</a></li> #}
+    </ul>
+    {% endblock %}
+    <br>
+  </div>
+
+  <div id="content">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
